@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Take Pictures Real-time</title>
+  </head>
+  <body>
+    <div>
+      <img src="" id="pict-img" width="550px">
+      <p id="pict-info"></p>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const image = document.getElementById("pict-img")
+      const info  = document.getElementById("pict-info")
+      const socket = io()
+
+      socket.on("new-pict", (data) => {
+        image.src = data.src
+        info.innerText = `Capture In Time ${data.time}`
+      })
+    </script>
+  </body>
+</html>
